@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { Send, Bot, Scale } from 'lucide-react';
+import { Server } from '../Constant/config';
 
 const ChatbotUI = () => {
   const [messages, setMessages] = useState([
@@ -26,12 +27,12 @@ const ChatbotUI = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/Bot/WebAsk', {
+      const response = await axios.post(`${Server}/api/v1/Bot/WebAsk`, {
         question: `Please provide an answer with respect to India: ${input}`
       });
 
       const botResponse = {
-        text: response.data.data.answer.kwargs.content,
+        text: response.data.data.answer.answer,
         isUser: false
       };
       setMessages((prev) => [...prev, botResponse]);
