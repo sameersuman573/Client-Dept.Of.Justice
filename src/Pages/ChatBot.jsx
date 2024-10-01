@@ -32,7 +32,7 @@ const ChatbotUI = () => {
       });
 
       const botResponse = {
-        text: response.data.data.answer.answer,
+        text: response.data.data.answer.kwargs.content,
         isUser: false
       };
       setMessages((prev) => [...prev, botResponse]);
@@ -51,8 +51,8 @@ const ChatbotUI = () => {
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-pink-800">
       <div className="flex-grow flex flex-col h-full">
-        <div className="bg-black bg-opacity-30 p-4 flex items-center justify-center">
-          <Scale className="text-yellow-400 mr-2" size={32} />
+        <div className="bg-black bg-opacity-30 p-4 flex items-center justify-center shadow-lg">
+          <Scale className="text-yellow-400 mr-2 animate-bounce" size={32} />
           <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
             Department of Justice Chatbot
           </h1>
@@ -61,7 +61,7 @@ const ChatbotUI = () => {
           {messages.map((message, index) => (
             <div key={index} className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}>
               <div 
-                className={`max-w-[70%] p-3 rounded-lg ${
+                className={`max-w-[70%] p-3 rounded-lg shadow-md ${
                   message.isUser 
                     ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white' 
                     : 'bg-gradient-to-r from-gray-800 to-gray-900 text-gray-100'
@@ -72,15 +72,15 @@ const ChatbotUI = () => {
             </div>
           ))}
           {isLoading && (
-            <div className="flex items-center text-gray-300">
-              <Bot className="animate-pulse mr-2" />
+            <div className="flex items-center text-gray-300 animate-pulse">
+              <Bot className="mr-2" />
               <span>Thinking...</span>
             </div>
           )}
           <div ref={messagesEndRef} />
         </div>
       </div>
-      <form onSubmit={handleSubmit} className="bg-black bg-opacity-30 p-4">
+      <form onSubmit={handleSubmit} className="bg-black bg-opacity-30 p-4 shadow-lg">
         <div className="max-w-4xl mx-auto flex">
           <input
             type="text"
