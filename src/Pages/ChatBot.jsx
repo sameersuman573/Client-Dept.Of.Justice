@@ -32,7 +32,7 @@ const ChatbotUI = () => {
       });
 
       const botResponse = {
-        text: response.data.data.answer.kwargs.content,
+        text: response.data.data,
         isUser: false
       };
       setMessages((prev) => [...prev, botResponse]);
