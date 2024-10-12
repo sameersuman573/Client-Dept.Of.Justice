@@ -1,13 +1,13 @@
- import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import ChatbotUI from './Pages/ChatBot';
- 
+import Chatbot from "./Pages/Test"
+  
 function App() {
   return (
     <Router>
-      <div>
-        <Routes>
-           <Route path="/" element={<ChatbotUI />} />
+      <div className="bg-black min-h-screen flex items-center justify-center">
+      <Routes>
+          <Route path="/" element={<Chatbot />} />
         </Routes>
       </div>
     </Router>
